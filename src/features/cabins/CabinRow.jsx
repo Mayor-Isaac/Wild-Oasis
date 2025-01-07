@@ -3,6 +3,9 @@ import styled from "styled-components";
 ////////////////////////////
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
+import { deleteCabin } from "../../services/apiCabins";
+import { useMutation } from "@tanstack/react-query";
+import Spinner from "../../ui/Spinner";
 
 const TableRow = styled.div`
   display: grid;
@@ -45,6 +48,13 @@ const Discount = styled.div`
 
 function CabinTable({ cabin }) {
   const { name, maxCapacity, regularPrice, discount, image: imageUrl } = cabin;
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: (name) => deleteCabin(name),
+  });
+
+  // if (isLoading) return <Spinner />;
+
   return (
     <TableRow role="row">
       <Img src={imageUrl} alt={name} />
@@ -52,7 +62,9 @@ function CabinTable({ cabin }) {
       <div>Fits up to {maxCapacity}</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <Button>Delete</Button>
+      <Button onClick={() => mutate(name)} disabled={isDeleting}>
+        Delete
+      </Button>
     </TableRow>
   );
 }
