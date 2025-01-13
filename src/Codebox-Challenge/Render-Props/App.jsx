@@ -88,38 +88,34 @@ function ProductList({ title, items }) {
   );
 }
 
-const ProductListWithToggles = withToggles(ProductList);
-
 export default function App() {
+  const ProductListWithToggles = withToggles(ProductList);
   return (
     <div>
       <h1>Render Props Demo</h1>
-
-      <div className="col-2">
+      {/* <div className="col-2">
         <List
-          title="Products"
           items={products}
-          render={(product) => (
-            <ProductItem key={product.productName} product={product} />
-          )}
+          title="Products"
+          render={(product) => {
+            <ProductItem key={product.productName} product={product} />;
+          }}
         />
-
         <List
-          title="Companies"
           items={companies}
-          render={(company) => (
+          title="Companies"
+          render={(company) => {
             <CompanyItem
               key={company.companyName}
               company={company}
               defaultVisibility={false}
-            />
-          )}
+            />;
+          }}
         />
-      </div>
-
+      </div> */}
       <div className="col-2">
-        <ProductList title="Products HOC" items={products} />
-        <ProductListWithToggles title="Products HOC" items={products} />
+        <ProductList title="Products HOC" item={products} />
+        <ProductListWithToggles title="Products HOC" item={products} />
       </div>
     </div>
   );
