@@ -2,7 +2,7 @@ import { HiXMark } from "react-icons/hi2";
 import { createContext, useState, useContext, cloneElement } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import useClikcOutside from "../hooks/useOutsideClick";
+import useClickOutside from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -75,7 +75,7 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ name, children }) {
   const { openName, close } = useContext(ModalContext);
 
-  const ref = useClikcOutside(close);
+  const ref = useClickOutside(close);
 
   if (name !== openName) return null;
   return createPortal(

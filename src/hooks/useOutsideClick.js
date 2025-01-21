@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function useClikcOutside(handler, listenCapturing = true) {
+function useClickOutside(handler, listenCapturing = true) {
   const ref = useRef();
 
   useEffect(() => {
@@ -15,4 +15,4 @@ function useClikcOutside(handler, listenCapturing = true) {
   }, [handler, listenCapturing]);
   return ref;
 }
-export default useClikcOutside;
+export default useClickOutside;
